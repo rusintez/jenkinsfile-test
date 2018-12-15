@@ -1,8 +1,5 @@
 pipeline {
   agent { docker 'node:10-alpine' }
-  environment {
-    XYZ = credentials("my-pipeline-secret")
-  }
   parameters {
     // https://www.youtube.com/watch?v=5_tvlaIeQUQ
     // default valuees are used during automatic triggers
@@ -24,11 +21,11 @@ pipeline {
     )
   }
   stages {
-    stage('init') {
+    stage("init") {
       steps {
         // http://localhost:8080/pipeline-syntax/globals#env
-        echo "Running ${env.BUILD_ID} ($BUILD_NUMBER) on ${env.JENKINS_URL}"
-        echo "${params.single} ${params.ability} ${params.value}"
+        sh 'echo "Running ${env.BUILD_ID} ($BUILD_NUMBER) on ${env.JENKINS_URL}"'
+        sh 'echo "${params.single} ${params.ability} ${params.value}"'
       }
     }
     stage("checkout") { 
