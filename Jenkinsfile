@@ -62,11 +62,17 @@ pipeline {
     }
     stage("release") {
       when { buildingTag() }
-      sh "apk add wget"
-      sh "wget https://github.com/aktau/github-release/releases/download/v0.7.2/linux-amd64-github-release.tar.bz2"
-      sh "tar xvjf linux-amd64-github-release.tar.bz2"
-      sh '/bin/linux/amd64/github-release --user rusintez --repo jenkinsfile-test --tag $TAG_NAME --name "$TAG_NAME" '
-      unstash "app"
+      environment { 
+        GITHUB_TOKEN = credentials('github-release-token') 
+      }
+      steps {
+        unstash "app"
+        sh "apk add wget"
+        sh "wget https://github.com/aktau/github-release/releases/download/v0.7.2/linux-amd64-github-release.tar.bz2"
+        sh "tar xvjf linux-amd64-github-release.tar.bz2"
+        sh '/bin/linux/amd64/github-release release --user rusintez --repo jenkinsfile-test --tag $TAG_NAME --name "$TAG_NAME" --description "$TAG_NAME"'
+        sh '/bin/linux/amd64/github-release upload --user rusintez --repo jenkinsfile-test --tag $TAG_NAME --name app-alpine-x64 --file app.bin'
+      }
     }
   }
   post {
