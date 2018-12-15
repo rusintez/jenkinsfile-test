@@ -54,7 +54,7 @@ pipeline {
       steps {
         sh "npm install -g pkg"
         sh "apk update && apk add --no-cache libstdc++ libgcc"
-        sh "/usr/local/bin/pkg -t node10-alpine-x64 . -o app.bin"
+        sh "/usr/local/bin/pkg -t node10-alpine-x64 index.js -o app.bin"
         stash includes: "app.bin", name: "app"
         // https://jenkins.io/doc/book/pipeline/jenkinsfile/#build
         // archiveArtifacts artifacts: 'app.bin', fingerprint: true 
