@@ -71,7 +71,7 @@ pipeline {
       }
       steps {
         unstash "app"
-        sh "apk add wget"
+        sh "apk add wget ca-certificates"
         sh "wget https://github.com/aktau/github-release/releases/download/v0.7.2/linux-amd64-github-release.tar.bz2"
         sh "tar xvjf linux-amd64-github-release.tar.bz2"
         sh './bin/linux/amd64/github-release release --user rusintez --repo jenkinsfile-test --tag $TAG_NAME --name "$TAG_NAME" --description "$TAG_NAME"'
