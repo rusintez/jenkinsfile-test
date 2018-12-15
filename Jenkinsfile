@@ -67,7 +67,7 @@ pipeline {
     stage("release") {
       when { buildingTag() }
       environment { 
-        GITHUB_TOKEN = credentials('github-release-token') 
+        GITHUB_TOKEN = credentials('github-release') 
       }
       steps {
         unstash "app"
