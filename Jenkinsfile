@@ -1,5 +1,6 @@
 pipeline {
   agent { docker 'node:10-alpine' }
+  triggers { pollSCM('* * * * *') }
   parameters {
     // https://www.youtube.com/watch?v=5_tvlaIeQUQ
     // default valuees are used during automatic triggers
