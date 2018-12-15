@@ -24,7 +24,7 @@ pipeline {
     stage("init") {
       steps {
         // http://localhost:8080/pipeline-syntax/globals#env
-        sh 'echo "Running ${env.BUILD_ID} ($BUILD_NUMBER) on ${env.JENKINS_URL}"'
+        // sh 'echo "Running ${env.BUILD_ID} (${env.BUILD_NUMBER}) on ${env.JENKINS_URL}"'
         sh 'echo "${params.single} ${params.ability} ${params.value}"'
       }
     }
