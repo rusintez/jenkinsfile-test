@@ -1,0 +1,27 @@
+{
+  "name": "jenkinsfile-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rusintez/jenkinsfile-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rusintez/jenkinsfile-test/issues"
+  },
+  "homepage": "https://github.com/rusintez/jenkinsfile-test#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "supertest": "^3.3.0"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

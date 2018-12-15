@@ -1,20 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker { image 'node:10-alpine' }
+  }
   stages {
-    stage('Custom Stage') {
-      steps {
-        withCredentials([string(credentialsId: 'username', variable: 'UN')]) {
-          sh '''
-            set +x
-            echo $UN
-          '''
-        }
-        echo 'Starting Custom Stage'
-        sleep 5
-        echo 'Done with Custom Stage'
-        sh '''date
-echo "Yo!" '''
-      }
-    }
+    stage("checkout") { checkout scm }
+    stage("assemble") { sh "npm install" }
+    stage("test") { sh "npm test" }
   }
 }
