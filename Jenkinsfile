@@ -1,23 +1,23 @@
 pipeline {
   agent {
-    docker { image 'node:10-alpine' }
+    docker { 
+      image 'node:10-alpine'
+    }
   }
-  node {
-    stages {
-      stage("checkout") { 
-        steps {
-          checkout scm 
-        }
+  stages {
+    stage("checkout") { 
+      steps {
+        checkout scm 
       }
-      stage("assemble") { 
-        steps {
-          sh "npm install" 
-        }
+    }
+    stage("assemble") { 
+      steps {
+        sh "npm install" 
       }
-      stage("test") { 
-        steps { 
-          sh "npm test" 
-        }
+    }
+    stage("test") { 
+      steps { 
+        sh "npm test" 
       }
     }
   }
