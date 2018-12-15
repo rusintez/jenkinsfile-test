@@ -4,9 +4,21 @@ pipeline {
   }
   node {
     stages {
-      stage("checkout") { checkout scm }
-      stage("assemble") { sh "npm install" }
-      stage("test") { sh "npm test" }
+      stage("checkout") { 
+        steps {
+          checkout scm 
+        }
+      }
+      stage("assemble") { 
+        steps {
+          sh "npm install" 
+        }
+      }
+      stage("test") { 
+        steps { 
+          sh "npm test" 
+        }
+      }
     }
   }
 }
